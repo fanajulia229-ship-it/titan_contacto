@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TITAN UK CONSTRUCTION LTD – Digital Contact Card</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg-main: #050915;
+            --bg-card: #0d1424;
+            --accent: #e4b34f;
+            --accent-soft: rgba(228, 179, 79, 0.18);
+            --text-main: #f5f5f7;
+            --text-muted: #a7b1c7;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #12233c 0, #050915 45%, #02040a 100%);
+            color: var(--text-main);
+            margin: 0;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(0,0,0,0.7));
+            border-radius: 22px;
+            padding: 22px 20px 24px;
+            max-width: 430px;
+            width: 100%;
+            box-shadow:
+                0 22px 50px rgba(0,0,0,0.7),
+                0 0 0 1px rgba(255,255,255,0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+        .glow {
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at top left, rgba(228,179,79,0.16), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(38,133,255,0.12), transparent 55%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        .logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .logo-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: radial-gradient(circle at 30% 20%, #ffffff, #f6d890 20%, #e4b34f 42%, #7b5924 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #20140a;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.55);
+        }
+        .logo-text-box {
+            margin-left: 10px;
+        }
+        .brand-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+        }
+        .brand-sub {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.14em;
+            margin-top: 2px;
+        }
+        .tagline {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-align: right;
+        }
+        .divider {
+            margin: 12px 0 14px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+        }
+        .name {
+            font-size: 1.08rem;
+            font-weight: 600;
+        }
+        .role {
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .experience {
+            margin-top: 6px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 16px;
+        }
+        .badge {
+            font-size: 0.72rem;
+            padding: 4px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background-color: rgba(4,10,25,0.85);
+            color: var(--text-muted);
+        }
+        .badge.highlight {
+            border-color: rgba(228,179,79,0.7);
+            background-color: var(--accent-soft);
+            color: #ffe2a3;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            margin-bottom: 16px;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            text-decoration: none;
+            border-radius: 999px;
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.14);
+            background: rgba(6,13,29,0.95);
+            color: var(--text-main);
+            transition: all 0.18s ease-out;
+        }
+        .btn span.icon {
+            font-size: 1rem;
+        }
+        .btn.primary {
+            background: linear-gradient(135deg, #f0c975, #e4b34f);
+            color: #24170a;
+            border-color: rgba(0,0,0,0.25);
+            box-shadow: 0 12px 26px rgba(0,0,0,0.55);
+        }
+        .btn.primary:hover {
+            filter: brightness(1.06);
+            transform: translateY(-1px);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.7);
+        }
+        .btn:hover {
+            background: rgba(16,28,55,0.98);
+            transform: translateY(-1px);
+        }
+        .footer {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .footer strong {
+            color: var(--text-main);
+        }
+        .address {
+            margin-top: 4px;
+        }
+        @media (max-width: 420px) {
+            .card {
+                padding: 18px 16px 20px;
+                border-radius: 18px;
+            }
+            .tagline {
+                font-size: 0.72rem;
+                max-width: 130px;
+                margin-left: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="glow"></div>
+        <div class="content">
+            <div class="logo-row">
+                <div style="display:flex; align-items:center;">
+                    <div class="logo-mark">T</div>
+                    <div class="logo-text-box">
+                        <div class="brand-name">TITAN</div>
+                        <div class="brand-sub">UK CONSTRUCTION LTD</div>
+                    </div>
+                </div>
+                <div class="tagline">Building &amp; Refurbishment Excellence</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="name">Francisco Araújo Fialho</div>
+            <div class="role">Director · Professional Building &amp; Renovation</div>
+            <div class="experience">
+                Experience in Brazil, 5 years in Portugal and 3 years in the UK.
+            </div>
+
+            <div class="badge-row">
+                <div class="badge highlight">Full Refurbishments</div>
+                <div class="badge">Carpentry</div>
+                <div class="badge">Flooring Installation</div>
+                <div class="badge">High-Quality Finishing</div>
+                <div class="badge">Residential &amp; Commercial Projects</div>
+            </div>
+
+            <div class="btn-group">
+                <a class="btn primary" href="https://wa.me/447939255537" target="_blank" rel="noopener noreferrer">
+                    <span class="icon">📲</span>
+                    <span>Chat on WhatsApp</span>
+                </a>
+                <a class="btn" href="tel:+447939255537">
+                    <span class="icon">📞</span>
+                    <span>Call +44 7939 255537</span>
+                </a>
+                <a class="btn" href="mailto:info.titanconstruction.uk@gmail.com">
+                    <span class="icon">✉️</span>
+                    <span>Email: info.titanconstruction.uk@gmail.com</span>
+                </a>
+                <a class="btn" href="https://www.titanconstructionprojects.com" target="_blank" rel="noopener noreferrer">
+                    <span class="icon">🌐</span>
+                    <span>Visit Website</span>
+                </a>
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=SO32+3QL" target="_blank" rel="noopener noreferrer">
+                    <span class="icon">📍</span>
+                    <span>View Location (Southampton Area)</span>
+                </a>
+            </div>
+
+            <div class="footer">
+                <div><strong>TITAN UK CONSTRUCTION LTD</strong></div>
+                <div>Phone: +44 7939 255537 · Email: info.titanconstruction.uk@gmail.com</div>
+                <div class="address">
+                    Flat 3, Meringtons Garage, Garrison Hill,<br>
+                    Southampton, SO32 3QL · United Kingdom
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
